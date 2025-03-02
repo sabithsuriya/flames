@@ -9,13 +9,6 @@ function calculateFLAMES() {
         alert('Please enter both names, buddy!');
         return;
     }
-
-    if (
-        (name1.includes('sabith') || name1.includes('sabithsuriya') || name1.includes('sabeetha')) ||
-        (name2.includes('sabith') || name2.includes('sabithsuriya') || name2.includes('sabeetha'))
-    ) {
-        alert("💖 Affection thaan!");
-        return;
     }
 
     const flames = ['Friends', 'Love', 'Affection', 'Marriage', 'Enemy', 'Siblings'];
