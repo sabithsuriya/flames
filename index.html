@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLAMES Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" data-tilt>
+        <h1>Flames Calculator</h1>
+        <input type="text" id="name1" placeholder="Enter your name">
+        <br><input type="text" id="name2" placeholder="Enter your crush name"></br>
+        <button onclick="calculateFLAMES()">Calculate</button>
+        <div id="result"></div>
+
+    </div>
+       
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+    <script>
+        // Initialize Vanilla Tilt on elements with the "tilt-element" class
+        VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 25,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+            gyroscope: true  // Enable gyroscope functionality
+        });
+    </script>
+</body>
+</html>
