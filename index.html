@@ -8,51 +8,64 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sour+Gummy:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBZCSQDSxLPjplUwGfRhLwjMP8FI2u627g",
-    authDomain: "flames-b2888.firebaseapp.com",
-    projectId: "flames-b2888",
-    storageBucket: "flames-b2888.firebasestorage.app",
-    messagingSenderId: "925343886632",
-    appId: "1:925343886632:web:aaa1800455331d9266341d",
-    measurementId: "G-X8WM0JE421"
-  };
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZCSQDSxLPjplUwGfRhLwjMP8FI2u627g",
+            authDomain: "flames-b2888.firebaseapp.com",
+            projectId: "flames-b2888",
+            storageBucket: "flames-b2888.appspot.com",  // Fixed storageBucket URL
+            messagingSenderId: "925343886632",
+            appId: "1:925343886632:web:aaa1800455331d9266341d",
+            measurementId: "G-X8WM0JE421"
+        };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app); // Firestore initialized
+
+        // Function to add test data to Firestore (optional)
+        async function addTestData() {
+            try {
+                await addDoc(collection(db, "users"), {
+                    name: "Test User",
+                    age: 20
+                });
+                console.log("Data added to Firestore!");
+            } catch (error) {
+                console.error("Error adding document:", error);
+            }
+        }
+        addTestData(); // Add test data on page load
     </script>
+
     <div class="container" data-tilt>
         <h1>Flames Calculator</h1>
-        <input type="text" id="name1" placeholder="Enter your name">
-        <br><input type="text" id="name2" placeholder="Enter your crush name"></br>
+        <input type="text" id="name1" placeholder="Enter your name" /><br />
+        <input type="text" id="name2" placeholder="Enter your crush's name" /><br />
         <button onclick="calculateFLAMES()">Calculate</button>
         <div id="result"></div>
-
     </div>
-       
-    <script src="script.js"></script>
+
+    <script src="script.js"></script> <!-- Ensure this file is correctly written -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
     <script>
-        // Initialize Vanilla Tilt on elements with the "tilt-element" class
+        // Initialize Vanilla Tilt effect
         VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
             max: 25,
             speed: 400,
             glare: true,
             "max-glare": 0.5,
-            gyroscope: true  // Enable gyroscope functionality
+            gyroscope: true
         });
     </script>
 </body>
