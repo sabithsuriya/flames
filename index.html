@@ -12,42 +12,24 @@
 </head>
 <body>
     <script type="module">
-        // Import Firebase SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBZCSQDSxLPjplUwGfRhLwjMP8FI2u627g",
-            authDomain: "flames-b2888.firebaseapp.com",
-            projectId: "flames-b2888",
-            storageBucket: "flames-b2888.appspot.com",  // Fixed storageBucket URL
-            messagingSenderId: "925343886632",
-            appId: "1:925343886632:web:aaa1800455331d9266341d",
-            measurementId: "G-X8WM0JE421"
-        };
+  const firebaseConfig = {
+      apiKey: "AIzaSyBZCSQDSxLPjplUwGfRhLwjMP8FI2u627g",
+      authDomain: "flames-b2888.firebaseapp.com",
+      projectId: "flames-b2888",
+      storageBucket: "flames-b2888.appspot.com",
+      messagingSenderId: "925343886632",
+      appId: "1:925343886632:web:aaa1800455331d9266341d",
+      measurementId: "G-X8WM0JE421"
+  };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app); // Firestore initialized
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app); // Initialize Firestore
 
-        // Function to add test data to Firestore (optional)
-        async function addTestData() {
-            try {
-                await addDoc(collection(db, "users"), {
-                    name: "Test User",
-                    age: 20
-                });
-                console.log("Data added to Firestore!");
-            } catch (error) {
-                console.error("Error adding document:", error);
-            }
-        }
-        addTestData(); // Add test data on page load
     </script>
-
     <div class="container" data-tilt>
         <h1>Flames Calculator</h1>
         <input type="text" id="name1" placeholder="Enter your name" /><br />
