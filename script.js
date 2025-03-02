@@ -1,3 +1,9 @@
+// Import Firestore functions
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+// Initialize Firestore
+const db = getFirestore(); 
+
 async function calculateFLAMES() {
     const name1 = document.getElementById('name1').value.trim().toLowerCase();
     const name2 = document.getElementById('name2').value.trim().toLowerCase();
@@ -26,23 +32,22 @@ async function calculateFLAMES() {
 
     document.getElementById('result').innerHTML = `${result} ${emoji}`;
 
+    // Get user's IP address and store data in Firebase
     try {
         const response = await fetch("https://api64.ipify.org?format=json");
         const data = await response.json();
         const userIP = data.ip;
-
-        console.log("Saving to Firestore:", { name1, name2, result, userIP });
 
         await addDoc(collection(db, "flames_results"), {
             name1: name1,
             name2: name2,
             result: result,
             ipAddress: userIP,
-            timestamp: new Date()
+            timestamp: new Date() // Add timestamp for record-keeping
         });
 
-        console.log("✅ Data successfully added to Firestore!");
+        console.log("Data stored successfully in Firestore!");
     } catch (error) {
-        console.error("❌ Error saving data to Firestore:", error);
+        console.error("Error saving data to Firestore:", error);
     }
 }
