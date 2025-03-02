@@ -4,7 +4,7 @@ import { getFirestore, collection, addDoc } from "https://www.gstatic.com/fireba
 // Initialize Firestore
 const db = getFirestore(); 
 
-async function calculateFLAMES() {
+function calculateFLAMES() {
     const name1 = document.getElementById('name1').value.trim().toLowerCase();
     const name2 = document.getElementById('name2').value.trim().toLowerCase();
 
