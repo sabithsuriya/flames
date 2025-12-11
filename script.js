@@ -2,29 +2,40 @@ function calculateFLAMES() {
     const name1 = document.getElementById('name1').value.toLowerCase().replace(/\s+/g, '');
     const name2 = document.getElementById('name2').value.toLowerCase().replace(/\s+/g, '');
 
-    console.log('Name 1:', name1); // Debugging
-    console.log('Name 2:', name2); // Debugging
-
     if (name1 === '' || name2 === '') {
         alert('Please enter both names, buddy!');
         return;
     }
+
+    const arr1 = name1.split('');
+    const arr2 = name2.split('');
+
+    for (let i = 0; i < arr1.length; i++) {
+        const idx = arr2.indexOf(arr1[i]);
+        if (idx !== -1) {
+            arr1.splice(i, 1);
+            arr2.splice(idx, 1);
+            i--;
+        }
+    }
+
+    const count = arr1.length + arr2.length;
+
+    if (count === 0) {
+        document.getElementById('result').innerText = 'Both names are identical! 🔁';
+        return;
     }
 
     const flames = ['Friends', 'Love', 'Affection', 'Marriage', 'Enemy', 'Siblings'];
-    let combined = name1 + name2;
-    let uniqueChars = [...new Set(combined.split(''))]; 
-    let count = uniqueChars.reduce((acc, char) => acc + (combined.split(char).length - 1), 0); 
+    let list = flames.slice();
+    let index = 0;
 
-    console.log('Combined:', combined); // Debugging
-    console.log('Unique Chars:', uniqueChars); // Debugging
-    console.log('Count:', count); // Debugging
+    while (list.length > 1) {
+        index = (index + count - 1) % list.length;
+        list.splice(index, 1);
+    }
 
-    let resultIndex = count % flames.length; 
-    let result = flames[resultIndex]; 
-
-    console.log('Result Index:', resultIndex); // Debugging
-    console.log('Result:', result); // Debugging
+    const result = list[0];
 
     let emoji = '';
     switch (result) {
@@ -36,6 +47,5 @@ function calculateFLAMES() {
         case 'Siblings': emoji = '👫'; break;
     }
 
-    console.log('Final Result:', `${result} ${emoji}`); // Debugging
-    document.getElementById('result').innerHTML = `${result} ${emoji}`;
+    document.getElementById('result').innerText = `${result} ${emoji}`;
 }
